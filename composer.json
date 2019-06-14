@@ -1,0 +1,24 @@
+{
+  "name": "you/nsq-client",
+  "description": "nsq的",
+  "type": "library",
+  "keywords": [
+    "client"
+  ],
+  "homepage": "https://github.com/ah0210/nsqphp",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "ah",
+      "email": "163828@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Nsqphp\\": "src/"
+    }
+  }
+}
