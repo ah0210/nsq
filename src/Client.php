@@ -1,18 +1,28 @@
 <?php
+/**
+ * // | Copyright (c)  2003-2019
+ * // +----------------------------------------------------------------------
+ * // | Author:   郝力辉 <163828@qq.com>
+ * // +----------------------------------------------------------------------
+ * // | Date:  19-6-14 下午11:21
+ * // +----------------------------------------------------------------------
+ * // | lastModified:   19-6-14 下午11:20
+ * // +----------------------------------------------------------------------
+ * // | v2  Client.php
+ * // +----------------------------------------------------------------------
+ */
 
 namespace Nsqphp;
 
 /**
  * Class Client
  */
-class Client
-{
-    // 驱动
+class Client {
     protected $nsqdAddr = ["127.0.0.1:4150"];
-    static $nsq;
+    private static $nsq;
 
     /**
-     * 构造
+     * Client constructor.
      * @param array $config
      */
     public function __construct(array $config){
@@ -24,12 +34,12 @@ class Client
     }
 
     /**
-     * 增加任务
-     * @param Message $message
+     * @param string $topic
+     * @param array $message
      * @param int $delayTime
-     * @param int $maxLifetime
+     * @return bool
      */
-    public function push(string $topic, array $message,int $delayTime = 0){
+    public static function push(string $topic, array $message,int $delayTime = 0){
         $message = json_encode($message);
         if (!self::$nsq) {
             app()->log->error('nsq入队失败'.$topic.' '.$message);
@@ -43,5 +53,4 @@ class Client
         }
         self::$nsq->closeNsqdConnection();
     }
-
 }
