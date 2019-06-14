@@ -25,10 +25,12 @@ class Client {
      * Client constructor.
      * @param array $config
      */
-    public function __construct(array $config){
-        $config = $config ? $config : $this->nsqdAddr;
+    public function __construct(array $config=[]){
+        if (!empty($config)) {
+            $this->nsqdAddr = array_merge($this->nsqdAddr,$config);
+        }
         self::$nsq = new \Nsq();
-        if (!self::$nsq->connectNsqd($config)) {
+        if (!self::$nsq->connectNsqd($this->nsqdAddr)) {
             app()->log->error('nsq服务失败');
         }
     }
