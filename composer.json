@@ -1,5 +1,5 @@
 {
-  "name": "you/nsq-client",
+  "name": "you/nsqphp",
   "description": "nsq的",
   "type": "library",
   "keywords": [
